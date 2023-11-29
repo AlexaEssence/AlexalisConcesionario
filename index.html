@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concesionario iCar Plus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="light-blue darken-1 white-text" onload="mostrarClientes(); mostrarMecanicos(); mostrarVehiculos(); mostrarRegistros();">
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper purple accent-4">
+              <a href="index.html" class="brand-logo center"><i class="material-icons">directions_car</i></a>
+              <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#gente">Mecánicos y clientes</a></li>
+                <li><a href="#vehiculos">Vehículos</a></li>
+                <li><a href="#registros">Registros</a></li>
+              </ul>
+              <button class="btn-floating btn-large waves-effect waves-light red right" onclick="salir()"><i class="material-icons">exit_to_app</i></button>
+            </div>
+        </nav>
+    </div>
+    <section>
+        <div class="row">
+            <h3 class="col s6 center" id="gente">Clientes</h3>
+            <h3 class="col s6 center">Mecánicos</h3>
+            <table class="col s4 offset-s1 centered">
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="clientesBody">
+
+                </tbody>
+            </table>
+            <table class="col s4 offset-s2 centered">
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="mecanicosBody">
+
+                </tbody>
+            </table>
+            <button type="button" class="waves-effect waves-light btn-large col s1 offset-s1"><i class="material-icons center" onclick="pdfGente()">insert_drive_file</i></button>
+        </div> <br><br>
+        <div class="row">
+            <form action="" class="col s10 offset-s1 pink accent-4">
+                <div class="row">
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">perm_identity</i>
+                      <input id="cedula" type="number" class="validate">
+                      <label for="cedula">Cédula</label>
+                    </div>
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">face</i>
+                      <input id="nombre" type="text" class="validate">
+                      <label for="nombre">Nombre</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">email</i>
+                        <input id="correo" type="text" class="validate">
+                        <label for="correo">Correo</label>
+                    </div>
+                    <button class="btn waves-effect waves-light col s3 offset-s2" type="button" onclick="ingresarGente('C')">Registrar cliente
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <button class="btn waves-effect waves-light col s3 offset-s1" type="button" onclick="ingresarGente('M')">Registrar mecánico
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <h3 class="col s6 offset-s3 center" id="vehiculos">Vehículos</h3>
+            <table class="col s10 offset-s1 centered">
+                <thead>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Descripción</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Tipo</th>
+                        <th>Año</th>
+                        <th>Clasificación</th>
+                        <th>Cliente</th>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+                <tbody id="vehiculosBody">
+
+                </tbody>
+            </table>
+            <button type="button" class="waves-effect waves-light btn-large col s1 offset-s1"><i class="material-icons center" onclick="pdfVehiculos()">insert_drive_file</i></button>
+        </div><br><br>
+        <div class="row">
+            <form id="vehiculosForm" action="" class="col s10 offset-s1 pink accent-4" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="input-field col s4">
+                      <i class="material-icons prefix">directions_car</i>
+                      <input id="matricula" name="matricula" type="text" class="validate">
+                      <label for="matricula">Matrícula</label>
+                    </div>
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">filter_tilt_shift</i>
+                        <input id="descripcion" name="descripcion" type="text" class="validate">
+                        <label for="descripcion">Descripción</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">filter_tilt_shift</i>
+                        <input id="marca" name="marca" type="text" class="validate">
+                        <label for="marca">Marca</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="modelo" name="modelo" type="text" class="validate">
+                        <label for="modelo">Modelo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="tipo" name="tipo" type="text" class="validate">
+                        <label for="tipo">Tipo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">filter_tilt_shift</i>
+                        <input id="year" name="year" type="text" class="validate">
+                        <label for="year">Año</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">filter_tilt_shift</i>
+                        <input id="clasificacion" name="clasificacion" type="text" class="validate">
+                        <label for="clasificacion">Clasificación</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="cliente" name="cliente" type="number" class="validate">
+                        <label for="cliente">Cédula del cliente</label>
+                    </div>
+                    <div class="file-field input-field col s12">
+                        <div class="btn">
+                          <span><i class="material-icons">attach_file</i></span>
+                          <input type="file" id="imagen" name="imagen">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light col s6 offset-s3" type="submit">Registrar vehículo
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <h3 class="col s6 offset-s3 center" id="registros">Registros</h3>
+            <table class="col s10 offset-s1 centered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vehículo</th>
+                        <th>Mecánico</th>
+                        <th>Repuestos</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="registrosBody">
+
+                </tbody>
+            </table>
+            <button type="button" class="waves-effect waves-light btn-large col s1 offset-s1"><i class="material-icons center" onclick="pdfRegistros()">insert_drive_file</i></button>
+        </div><br><br>
+        <div class="row">
+            <form action="" class="col s10 offset-s1 pink accent-4">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">directions_car</i>
+                      <input id="vehiculo" type="text" class="validate">
+                      <label for="vehiculo">Matrícula del vehículo</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">perm_identity</i>
+                      <input id="mecanico" type="text" class="validate">
+                      <label for="mecanico">Cédula del mecánico</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">build</i>
+                        <input id="repuestos" type="text" class="validate">
+                        <label for="repuestos">Repuestos</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">check_box</i>
+                        <select id="estado">
+                            <option value="Asignado">Asignado</option>
+                            <option value="Cambiado">Cambiado</option>
+                        </select>
+                        <label for="estado">Estado del repuesto</label>
+                    </div>
+                    <button class="btn waves-effect waves-light col s6 offset-s3" type="button" onclick="ingresarRegistros()">Añadir registro
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="assets/js/index.js"></script>
+    <script>
+        if(localStorage.getItem("usuario") === null && localStorage.getItem("clave") === null){
+            location.replace('login.html')
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
+</body>
+</html>

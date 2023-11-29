@@ -1,0 +1,19 @@
+label.blue-text, h3.blue-text, ul.hide-on-med-and-down > li > a{
+    font-weight: bolder;
+}
+
+h3.blue-text{
+    margin-top: 15%;
+}
+
+#botonLogin{
+    background-color: #1976d2;
+}
+
+a.brand-logo > i.material-icons{
+    font-size: 3rem !important;
+}
+
+.nav-wrapper > button.btn-floating{
+    margin: 0.3% 0.7% 0 0 !important;
+}
